@@ -1,0 +1,15 @@
+C:\Dev\TesteDev\TesteDevFullStack\TesteDevFullStack\bin\Debug\net6.0\TesteDevFullStack.exe
+C:\Dev\TesteDev\TesteDevFullStack\TesteDevFullStack\bin\Debug\net6.0\TesteDevFullStack.deps.json
+C:\Dev\TesteDev\TesteDevFullStack\TesteDevFullStack\bin\Debug\net6.0\TesteDevFullStack.runtimeconfig.json
+C:\Dev\TesteDev\TesteDevFullStack\TesteDevFullStack\bin\Debug\net6.0\TesteDevFullStack.dll
+C:\Dev\TesteDev\TesteDevFullStack\TesteDevFullStack\bin\Debug\net6.0\TesteDevFullStack.pdb
+C:\Dev\TesteDev\TesteDevFullStack\TesteDevFullStack\obj\Debug\net6.0\TesteDevFullStack.csproj.AssemblyReference.cache
+C:\Dev\TesteDev\TesteDevFullStack\TesteDevFullStack\obj\Debug\net6.0\TesteDevFullStack.GeneratedMSBuildEditorConfig.editorconfig
+C:\Dev\TesteDev\TesteDevFullStack\TesteDevFullStack\obj\Debug\net6.0\TesteDevFullStack.AssemblyInfoInputs.cache
+C:\Dev\TesteDev\TesteDevFullStack\TesteDevFullStack\obj\Debug\net6.0\TesteDevFullStack.AssemblyInfo.cs
+C:\Dev\TesteDev\TesteDevFullStack\TesteDevFullStack\obj\Debug\net6.0\TesteDevFullStack.csproj.CoreCompileInputs.cache
+C:\Dev\TesteDev\TesteDevFullStack\TesteDevFullStack\obj\Debug\net6.0\TesteDevFullStack.dll
+C:\Dev\TesteDev\TesteDevFullStack\TesteDevFullStack\obj\Debug\net6.0\refint\TesteDevFullStack.dll
+C:\Dev\TesteDev\TesteDevFullStack\TesteDevFullStack\obj\Debug\net6.0\TesteDevFullStack.pdb
+C:\Dev\TesteDev\TesteDevFullStack\TesteDevFullStack\obj\Debug\net6.0\TesteDevFullStack.genruntimeconfig.cache
+C:\Dev\TesteDev\TesteDevFullStack\TesteDevFullStack\obj\Debug\net6.0\ref\TesteDevFullStack.dll
