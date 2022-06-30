@@ -1,4 +1,5 @@
-﻿using TesteDevFullStack.Enum;
+﻿using System.Globalization;
+using TesteDevFullStack.Enum;
 using TesteDevFullStack.Model;
 
 namespace TesteDevFullStack.Service
@@ -13,39 +14,73 @@ namespace TesteDevFullStack.Service
             this.model = model;
         }
 
-        public CreditoModel validaCredito(int tipo, double valor, int qtd, string data)
+        /// <summary>
+        /// Converte a string Data em DateTime
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public DateTime converteData(string data)
         {
-            if (valor > 10 && valor <= 1000000)
+            try
             {
-                double valorCredito = valor;
-                int qtdCredito = qtd;
-                DateTime date = DateTime.Parse(data);
+                 DateTime _data = DateTime.ParseExact(data, "ddMMyyyy", new CultureInfo("en-us", false));
+                 return _data;
 
-                if (((int)CreditoEnum.Direto) == tipo)
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine("Error:" + ex.Message);
+            }
+            return DateTime.MinValue;
+        }
+        public override string ToString()
+        {
+            return "\n Valor do Empréstimo: " + model.Valor.ToString("F2") + "\n Tipo: " + model.Tipo + "\n Quantidade de Parcelas: " + model.QtdParcelas + 
+                    "\n Data do primeiro vencimento: " + model.DataPrimeiroVencimento.ToString("dd/MM/yyyy" + "\n VALOR TOTAL: " +model.ValorTotal.ToString("F2") + "\n VALOR DE JUROS: " + model.ValorJuros.ToString("F2"));
+        }
+
+        public CreditoModel validaCredito(CreditoModel model)
+        {
+            double taxaJuros = 0;
+            if (model.Valor > 10 && model.Valor <= 1000000)
+            {
+
+                if (((int)CreditoEnum.Direto) == model.Tipo)
                 {
-                    model.Valor = (0.02 * 100) * valor;
+                    taxaJuros = 0.02 * model.QtdParcelas;
+                    model.ValorTotal = model.Valor + (model.Valor * Math.Pow((taxaJuros) + 1, (model.QtdParcelas)) * taxaJuros) / (Math.Pow(taxaJuros + 1, (model.QtdParcelas)) - 1);
+                    model.ValorJuros = model.ValorTotal - model.Valor;
                     return model;
                 }
-                else if (((int)CreditoEnum.Consignado) == tipo)
+                else if (CreditoEnum.Consignado == model.Tipo)
                 {
-                    model.Valor = (0.01 * 100) * valor;
+                    taxaJuros = 0.01 * model.QtdParcelas;
+                    model.ValorTotal = model.Valor + (model.Valor * Math.Pow((taxaJuros) + 1, (model.QtdParcelas)) * taxaJuros) / (Math.Pow(taxaJuros + 1, (model.QtdParcelas)) - 1);
+                    model.ValorJuros = model.ValorTotal - model.Valor;
                     return model;
                 }
-                else if (((int)CreditoEnum.PessoaJuridica) == tipo)
+                else if (CreditoEnum.PessoaJuridica == model.Tipo)
                 {
-                    model.Valor = (0.05 * 100) * valor;
+                    taxaJuros = 0.05 * model.QtdParcelas;
+                    model.ValorTotal = model.Valor + (model.Valor * Math.Pow((taxaJuros) + 1, (model.QtdParcelas)) * taxaJuros) / (Math.Pow(taxaJuros + 1, (model.QtdParcelas)) - 1);
+                    model.ValorJuros = model.ValorTotal - model.Valor;
                     return model;
 
                 }
-                else if (((int)CreditoEnum.PessoaFisica) == tipo)
+                else if (CreditoEnum.PessoaFisica == model.Tipo)
                 {
-                    model.Valor = (0.03 * 100) * valor;
+                    taxaJuros = 0.03 * model.QtdParcelas;
+                    model.ValorTotal = model.Valor + (model.Valor * Math.Pow((taxaJuros) + 1, (model.QtdParcelas)) * taxaJuros) / (Math.Pow(taxaJuros + 1, (model.QtdParcelas)) - 1);
+                    model.ValorJuros = model.ValorTotal - model.Valor;
                     return model;
 
                 }
-                else if (((int)CreditoEnum.Imobiliario) == tipo)
+                else if (CreditoEnum.Imobiliario == model.Tipo)
                 {
-                    model.Valor = (0.09 * 100) * valor;
+                    taxaJuros = 0.09 * model.QtdParcelas;
+                    model.ValorTotal = model.Valor + (model.Valor * Math.Pow((taxaJuros) + 1, (model.QtdParcelas)) * taxaJuros) / (Math.Pow(taxaJuros+1, (model.QtdParcelas))-1);
+                    model.ValorJuros = model.ValorTotal - model.Valor;
                     return model;
 
                 }
@@ -56,10 +91,6 @@ namespace TesteDevFullStack.Service
                 }
             }
             return null;
-        }
-        public override string ToString()
-        {
-            return "Valor do Empréstimo: " + model.Valor.ToString("F2") + ", Tipo: " + model.Tipo + ", Quantidade de Parcelas: " + model.QtdParcelas + ", Data do primeiro vencimento: " + model.DataPrimeiroVencimento;
         }
     }
 }
