@@ -1,4 +1,5 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using System.Text;
+// See https://aka.ms/new-console-template for more information
 using System.Globalization;
 using TesteDevFullStack.Enum;
 using TesteDevFullStack.Model;
@@ -11,6 +12,7 @@ Console.Write("\n\n===========================================================\n
 int tipo = -1;
 bool valida = false;
 string mensagem = "";
+Console.OutputEncoding = Encoding.UTF8;
 do
 {
     Console.WriteLine("Entre com o valor de Crédito");
@@ -53,14 +55,14 @@ do
                 {
                     model.DataPrimeiroVencimento = data;
                     model = service.validaCredito(model);
-                    model.StatusCredito = "APROVADO";
+                    model.StatusCredito = "REPROVADO " + "\u263A";
                     Console.Write("\n\n===========================================================\nDADOS DO EMPRÉSTIMO\n===========================================================\n");
                     Console.WriteLine(service.ToString());
                 }
                 else
                 {
                     valida = false;
-                    model.StatusCredito = "REPROVADO!";
+                    model.StatusCredito = "REPROVADO " + "\u263A";
                     mensagem = "\nVencimento da Primeira parcela esta fora do limite mínimo(hoje+15) e máximo(hoje+40)";
                 }
             }
@@ -68,23 +70,25 @@ do
             {
                 valida = false;
                 mensagem = "ATENÇÂO: quantidade mínima é de 5x e máximo de 72x ";
-                model.StatusCredito = "REPROVADO";
+                model.StatusCredito = "REPROVADO " + "\u263A";
             }
         }
         else
         {
             valida = false;
-            mensagem = "Informe a opção de crédito conforme as apresentadas! ";
-            model.StatusCredito = "REPROVADO";
+            mensagem = "\n============================ALERTA======================\n";
+            mensagem += "Informe a opção de crédito conforme as apresentadas! ";
+            mensagem += "\n========================================================\n";
+            model.StatusCredito = "REPROVADO " + "\u263A";
         }
     }
     else
     {
         valida = false;
         mensagem = "Valor informado não esta dentro do limite mínimo e máximo(100.000,00).";
-        model.StatusCredito = "REPROVADO";
+        model.StatusCredito = "REPROVADO " + "\u263A";
     }
-    Console.WriteLine("STATUS DO CREDITO: " + model.StatusCredito);
+    Console.WriteLine("\n\nSTATUS DO CREDITO: " + model.StatusCredito);
     Console.WriteLine(mensagem);
 } while (valida == false);
 
